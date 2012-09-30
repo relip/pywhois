@@ -102,6 +102,8 @@ class WhoisEntry(object):
         	return WhoisMe(domain, text)
         elif '.uk' in domain:
         	return WhoisUk(domain, text)
+	elif ".kr" in domain:
+		return WhoisKr(domain, text)
         else:
             return WhoisEntry(domain, text)
 
