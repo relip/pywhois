@@ -343,3 +343,25 @@ class WhoisUk(WhoisEntry):
             raise PywhoisError(text)
         else:
             WhoisEntry.__init__(self, domain, text, self.regex)
+
+class WhoisKr(WhoisEntry):
+	"""Whois parser for .info domains
+	"""
+	regex = {
+		"domain_name":		"Domain Name\s*: (.+)",
+		"registrar":		"Authorized Agency\s*: (.+)\(.+\)",
+		"registrar_url":	"Authorized Agency\s*: .+\((.+)\)",
+		"registrant_name":	"Registrante\s*: (.+)",
+		"creation_date":	"Registered Date\s*: (.+)",
+		"expiration_date":	"Expiration Date\s*: (.+)",
+		"updated_date":		"Expiration Date\s*: (.+)",	
+	}
+	
+	def __init__(self, domain, text):
+		if 'Above domain name is not registered to KRNIC.' in text:
+			raise PywhoisError(text)
+	
+		else: 
+			WhoisEntry.__init__(self, domain, text, self.regex)
+
+
