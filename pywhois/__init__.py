@@ -10,7 +10,7 @@ def whois(url):
     domain = extract_domain(url)
     try:
         # try native whois command first
-        r = subprocess.Popen(['whois', domain], stdout=subprocess.PIPE)
+        r = subprocess.Popen(['whois', "--no-redirect", domain], stdout=subprocess.PIPE)
         text = r.stdout.read()
     except OSError:
         # try experimental client

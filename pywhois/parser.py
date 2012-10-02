@@ -113,7 +113,7 @@ class WhoisCom(WhoisEntry):
     """Whois parser for .com domains
     """
     def __init__(self, domain, text):
-        if 'No match for "' in text:
+        if 'No match for' in text:
             raise PywhoisError(text)
         else:
             WhoisEntry.__init__(self, domain, text) 
@@ -122,7 +122,7 @@ class WhoisNet(WhoisEntry):
     """Whois parser for .net domains
     """
     def __init__(self, domain, text):
-        if 'No match for "' in text:
+        if 'No match for' in text:
             raise PywhoisError(text)
         else:
             WhoisEntry.__init__(self, domain, text) 
@@ -347,7 +347,7 @@ class WhoisUk(WhoisEntry):
             WhoisEntry.__init__(self, domain, text, self.regex)
 
 class WhoisKr(WhoisEntry):
-	"""Whois parser for .info domains
+	"""Whois parser for .kr domains
 	"""
 	regex = {
 		"domain_name":		"Domain Name\s*: (.+)",
